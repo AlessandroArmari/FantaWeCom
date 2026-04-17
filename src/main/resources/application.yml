@@ -12,5 +12,10 @@ spring:
       ddl-auto: update
     show-sql: false
 
+  security:
+    debug: true
+
 server:
   port: 8088
+
+
