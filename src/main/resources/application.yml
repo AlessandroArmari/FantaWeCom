@@ -1,4 +1,5 @@
-
+server:
+  port: 8088
 
 spring:
   datasource:
@@ -12,10 +13,12 @@ spring:
       ddl-auto: update
     show-sql: false
 
-  security:
-    debug: true
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
 
-server:
-  port: 8088
+
 
 
