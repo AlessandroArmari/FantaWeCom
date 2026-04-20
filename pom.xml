@@ -78,6 +78,12 @@
             <version>1.18.42</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-admin-client</artifactId>
+            <version>26.0.9</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

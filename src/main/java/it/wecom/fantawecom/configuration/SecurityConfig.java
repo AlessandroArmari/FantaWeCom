@@ -1,6 +1,9 @@
 package it.wecom.fantawecom.configuration;
 
 import lombok.RequiredArgsConstructor;
+import org.keycloak.OAuth2Constants;
+import org.keycloak.admin.client.Keycloak;
+import org.keycloak.admin.client.KeycloakBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,12 +19,25 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/userKeycloak/test")
-                .hasRole("ADMIN")
-                .anyRequest().authenticated()
+                        .anyRequest().permitAll());
+                //.requestMatchers("/userKeycloak/test")
+                //.hasRole("ADMIN")
+                //.anyRequest().authenticated()
                 //.requestMatchers()
-                );
+                //);
 
         return http.build();
+    }
+
+    @Bean
+    public Keycloak keycloak() {
+        return KeycloakBuilder.builder()
+                .serverUrl("http://localhost:7080/")
+                .realm("FantaWeCom")
+                .clientId("FantaWeCom")
+                .grantType(OAuth2Constants.PASSWORD)
+                .username("admin")
+                .password("admin")
+                .build();
     }
 }
