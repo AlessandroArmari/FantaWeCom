@@ -1,5 +1,6 @@
 package it.wecom.fantawecom.configuration;
 
+import it.wecom.fantawecom.K.Ksecurity;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
@@ -33,11 +34,11 @@ public class SecurityConfig {
     public Keycloak keycloak() {
         return KeycloakBuilder.builder()
                 .serverUrl("http://localhost:7080/")
-                .realm("FantaWeCom")
-                .clientId("FantaWeCom")
+                .realm(Ksecurity.KEYCLOAK_REALM)
+                .clientId(Ksecurity.KEYCLOAK_CLIENT_ID)
                 .grantType(OAuth2Constants.PASSWORD)
-                .username("admin")
-                .password("admin")
+                .username(Ksecurity.KEYCLOAK_USERNAME)
+                .password(Ksecurity.KEYCLOAK_PASSWORD)
                 .build();
     }
 }
