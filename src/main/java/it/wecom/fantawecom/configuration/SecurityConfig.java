@@ -40,9 +40,8 @@ public class SecurityConfig {
                 .serverUrl("http://localhost:7080")
                 .realm(Ksecurity.KEYCLOAK_REALM)
                 .clientId(Ksecurity.KEYCLOAK_CLIENT_ID)
-                .grantType(OAuth2Constants.PASSWORD)
-                .username(Ksecurity.KEYCLOAK_USERNAME)
-                .password(Ksecurity.KEYCLOAK_PASSWORD)
+                .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
+                .clientSecret("hxed8N7IjxdtD49zIqa6iGtZyHa6w5pc")
                 .build();
     }
 }
