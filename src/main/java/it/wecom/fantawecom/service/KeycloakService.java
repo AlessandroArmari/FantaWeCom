@@ -1,12 +1,8 @@
 package it.wecom.fantawecom.service;
 
 import it.wecom.fantawecom.K.Ksecurity;
-import jakarta.ws.rs.BadRequestException;
-import jakarta.ws.rs.ForbiddenException;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.admin.client.Keycloak;
-import org.keycloak.admin.client.token.TokenManager;
-import org.keycloak.representations.AccessTokenResponse;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +14,7 @@ public class KeycloakService {
     public Object findByUsername(String username) {
 
 
+        /*
         try {
             TokenManager tokenManager = keycloak.tokenManager();
             AccessTokenResponse accessTokenResponse = keycloak.tokenManager().getAccessToken();
@@ -26,17 +23,14 @@ public class KeycloakService {
             System.out.println(ex.getResponse().readEntity(String.class));
         }
 
+         */
 
-        try {
-            return keycloak.realm(Ksecurity.KEYCLOAK_REALM)
-                    .users()
-                    .searchByUsername(username, true)
-                    .getFirst();
-        } catch (ForbiddenException ex) {
-            System.out.println(ex.getResponse().readEntity(String.class));
-        }
 
-        return null;
+        return keycloak.realm(Ksecurity.KEYCLOAK_REALM)
+                .users()
+                .searchByUsername(username, true)
+                .getFirst();
+
 
     }
 }
