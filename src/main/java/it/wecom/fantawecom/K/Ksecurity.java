@@ -11,4 +11,7 @@ public class Ksecurity {
 
     public static final String KEYCLOAK_PASSWORD = "admin";
 
+    public static final String UNATHORIZED = "unathorized";
+
+
 }
