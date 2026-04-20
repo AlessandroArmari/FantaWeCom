@@ -22,10 +22,10 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
 
         String bearer = request.getHeader(AUTHORIZATION);
 
-        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[1];
 
         if (bearer == null || !bearer.startsWith("Bearer ")) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            return;
             //QUI DEOVREI AGGIUNGERE
             //@Component
             //public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint
