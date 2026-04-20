@@ -1,16 +1,12 @@
 package it.wecom.fantawecom.configuration;
 
-import it.wecom.fantawecom.configuration.exception.Exc404;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.security.sasl.AuthenticationException;
 import java.io.IOException;
 
 import static org.apache.http.HttpHeaders.AUTHORIZATION;

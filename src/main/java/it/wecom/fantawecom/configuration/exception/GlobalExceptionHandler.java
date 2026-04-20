@@ -13,8 +13,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
-    @ExceptionHandler(Exc404.class)
-    public ResponseEntity<Object> handleAuthenticationException(Exc404 ex404, WebRequest request) {
+    @ExceptionHandler(Exc401.class)
+    public ResponseEntity<Object> handleAuthenticationException(Exc401 ex404, WebRequest request) {
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex404);
     }
