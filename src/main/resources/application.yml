@@ -2,6 +2,14 @@ server:
   port: 8088
 
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:7080/realms/master
+          jwk-set-uri: http://localhost:7080/realms/master/protocol/openid-connect/certs
+
+
   datasource:
     password: password
     url: jdbc:postgresql://localhost:5432/db
@@ -13,12 +21,18 @@ spring:
       ddl-auto: update
     show-sql: false
 
+
 logging:
   level:
     org:
       springframework:
         security: DEBUG
 
+jwt:
+  auth:
+    converter:
+      resource-id: demo
+      principle-attribute: preferred_username
 
 
 

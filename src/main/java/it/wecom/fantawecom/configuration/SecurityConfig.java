@@ -7,11 +7,10 @@ import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @EnableWebSecurity
@@ -19,8 +18,12 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    Keycloak keycloak;
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
+
 
         http.authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll());
@@ -34,14 +37,17 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
+    @Bean("keycloak")
     public Keycloak keycloak() {
-        return KeycloakBuilder.builder()
+
+        this.keycloak = KeycloakBuilder.builder()
                 .serverUrl("http://localhost:7080")
                 .realm(Ksecurity.KEYCLOAK_REALM)
                 .clientId(Ksecurity.KEYCLOAK_CLIENT_ID)
                 .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
                 .clientSecret("hxed8N7IjxdtD49zIqa6iGtZyHa6w5pc")
                 .build();
+
+        return keycloak;
     }
 }
