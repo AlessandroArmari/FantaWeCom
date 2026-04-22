@@ -32,18 +32,23 @@ public class JwtConverter implements Converter<Jwt, AbstractAuthenticationToken>
     @Override
     public AbstractAuthenticationToken convert(@NonNull Jwt jwt) {
 
-        Collection<GrantedAuthority> authorities = Stream.concat(
-                jwtGrantedAuthoritiesConverter.convert(jwt).stream(),
-                this.extractResourceRoles(jwt).stream()
-        ).collect(Collectors.toSet());
+        Collection<GrantedAuthority> scopes = jwtGrantedAuthoritiesConverter.convert(jwt);
 
-        JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(
+        Collection<? extends GrantedAuthority> roles = this.extractResourceRoles(jwt);
+
+        Collection<GrantedAuthority> authorities = Stream.concat(
+                        scopes.stream(),
+                        roles.stream()
+                )
+                .collect(Collectors.toSet());
+
+        //CREATE TOKEN
+
+        return new JwtAuthenticationToken(
                 jwt,
                 authorities,
                 this.getPrincipleClaimName(jwt)
         );
-
-        return jwtAuthenticationToken;
     }
 
     private String getPrincipleClaimName(Jwt jwt) {
@@ -56,27 +61,28 @@ public class JwtConverter implements Converter<Jwt, AbstractAuthenticationToken>
     }
 
     private Collection<? extends GrantedAuthority> extractResourceRoles(Jwt jwt) {
-        Map<String, Object> resourceAccess;
-        Map<String, Object> resource;
+
+        Map<String, Object> realmAccess;
+        //Map<String, Object> resource;
         Collection<String> resourceRoles;
 
-        if (jwt.getClaim("resource_access") == null) {
+        if (jwt.getClaim("realm_access") == null) {
             return Set.of();
         }
 
-        resourceAccess = jwt.getClaim("resource_access");
+        realmAccess = jwt.getClaim("realm_access");
 
-        if (resourceAccess.get(resourceId) == null) {
+        if (realmAccess.get(resourceId) == null) {
             return Set.of();
         }
 
-        resource = (Map<String, Object>) resourceAccess.get(resourceId);
+        resourceRoles = (Collection<String>) realmAccess.get(resourceId);
 
-        resourceRoles = (Collection<String>) resource.get("roles");
-
-        return resourceRoles
+        Collection<? extends GrantedAuthority> grandetedAuthorities = resourceRoles
                 .stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                 .collect(Collectors.toSet());
+
+        return grandetedAuthorities;
     }
 }
