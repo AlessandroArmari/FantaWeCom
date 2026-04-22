@@ -31,8 +31,9 @@ logging:
 jwt:
   auth:
     converter:
-      resource-id: demo
       principle-attribute: preferred_username
+      resource-id: demo
+
 
 
 
