@@ -1,7 +1,5 @@
 package it.wecom.fantawecom.configuration.exception;
 
-
-import it.wecom.fantawecom.K.Ksecurity;
 import org.springframework.http.HttpStatus;
 
 public class Exc401 extends ExcGeneric {

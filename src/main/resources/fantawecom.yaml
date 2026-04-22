@@ -1,0 +1,72 @@
+#OpenAPI specification
+openapi: 3.0.4
+info:
+  title: FantaWeCom
+  description: FantaWeCom
+  version: 0.0.1
+
+#The servers section specifies the API server and base URL.
+#You can define one or several servers, such as production and sandbox.
+servers:
+  - url: http://localhost:8088
+    description: localhost
+
+# All paths are relative to this url
+tags:
+  - name: FantaWeCom
+
+paths:
+  /keycloak:
+    get:
+      summary: List all users
+      operationId: listUsers
+      tags:
+        - keycloak
+      parameters:
+        - name: page
+          in: query
+        - name: size
+          in: query
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+    post:
+      summary: Create a USER TEST
+      operationId: createUserTEST
+
+
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - username
+        - email
+        - firstName
+        - lastName
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
