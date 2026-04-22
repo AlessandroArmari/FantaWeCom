@@ -4,7 +4,7 @@ import it.wecom.fantawecom.K.Ksecurity;
 import it.wecom.fantawecom.configuration.exception.Exc404;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.admin.client.Keycloak;
-import org.keycloak.representations.AccessTokenResponse;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,8 +15,6 @@ public class KeycloakService {
 
     public Object findByUsername(String username) {
 
-
-        System.out.println("findByUsername");
         /*
         try {
             TokenManager tokenManager = keycloak.tokenManager();
