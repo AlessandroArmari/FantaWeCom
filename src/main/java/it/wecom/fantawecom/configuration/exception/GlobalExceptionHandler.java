@@ -14,9 +14,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(Exc401.class)
-    public ResponseEntity<Object> handleAuthenticationException(Exc401 ex404, WebRequest request) {
+    public ResponseEntity<Object> handleExc401(Exc401 ex404, WebRequest request) {
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex404);
+    }
+
+    @ExceptionHandler(Exc404.class)
+    public ResponseEntity<Object> handleExc404(Exc404 ex404, WebRequest request) {
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex404);
     }
 
 }

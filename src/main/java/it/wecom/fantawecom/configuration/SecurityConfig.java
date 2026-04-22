@@ -55,7 +55,7 @@ public class SecurityConfig {
                 .realm(Ksecurity.KEYCLOAK_REALM)
                 .clientId(Ksecurity.KEYCLOAK_CLIENT_ID)
                 .grantType(OAuth2Constants.CLIENT_CREDENTIALS)
-                .clientSecret("hxed8N7IjxdtD49zIqa6iGtZyHa6w5pc")
+                .clientSecret("5R8PNRqMDVEW8EYgQjgEWbidRJGD4FuU")
                 .build();
 
     }
