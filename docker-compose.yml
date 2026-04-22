@@ -8,6 +8,8 @@ services:
       - POSTGRES_DB=db
     volumes:
       - ./db-data/:/var/lib/postgresql/data/
+      #- "/etc/localtime:/etc/localtime:ro"
+      #- "/etc/timezone:/etc/timezone:ro"
     ports:
       - "5432:5432"
     restart: unless-stopped
@@ -25,6 +27,7 @@ services:
       KC_DB_URL: jdbc:postgresql://db_keycloak:5432/keycloak
       KC_DB_USERNAME: user
       KC_DB_PASSWORD: password
+      TZ: Europe/Rome
     ports:
       - 7080:8080
     depends_on:
@@ -40,5 +43,8 @@ services:
 
     volumes:
       - pg_data:/var/lib/postgresql/data
+      #- "/etc/localtime:/etc/localtime:ro"
+      #- "/etc/timezone:/etc/timezone:ro"
+
 volumes:
   pg_data:

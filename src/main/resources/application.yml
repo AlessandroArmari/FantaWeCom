@@ -6,8 +6,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:7080/realms/master
-          jwk-set-uri: http://localhost:7080/realms/master/protocol/openid-connect/certs
+          issuer-uri: http://localhost:7080/realms/FantaWeCom
+          jwk-set-uri: http://localhost:7080/realms/FantaWeCom/protocol/openid-connect/certs
 
 
   datasource:

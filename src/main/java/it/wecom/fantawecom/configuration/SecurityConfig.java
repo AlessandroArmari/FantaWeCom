@@ -34,8 +34,7 @@ public class SecurityConfig {
                         jwt -> jwt.jwtAuthenticationConverter(jwtConverter))
                 )
                 .sessionManagement(sessionManagement ->
-                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                );
+                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
 
         http.addFilterBefore(new CustomAuthenticationFilter(), BasicAuthenticationFilter.class);
