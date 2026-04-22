@@ -12,7 +12,6 @@ public class Exc404 extends ExcGeneric {
     public Exc404(String userMessage, String message, String className, String methodName, String line) {
 
         super(userMessage, message, className, methodName, line);
-        this.setUserMessage(Kerror.NOT_FOUND);
         this.setHttpStatus(HttpStatus.NOT_FOUND);
 
     }
